@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bamboo" >
+    
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView 
+		        android:text="@string/adjust_sensitivity"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="20dip"
+		        android:background="#651"/>
+		    
+		    <include layout="@layout/bar"/>
+		        
+		    <LinearLayout
+		        android:id="@+id/linearLayout2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" >  
+		        
+		        <TextView
+		            android:id="@+id/dBTextView"
+		            android:layout_width="107dp"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.25"
+		            android:gravity="right"
+		            android:text="0"
+		            android:textAppearance="?android:attr/textAppearanceLarge"
+		            android:textSize="80dp"
+		            android:textColor="#000"
+		            android:typeface="monospace" />
+		
+		        <TextView
+		            android:id="@+id/textView1"
+		            android:layout_width="26dp"
+		            android:layout_height="wrap_content"
+		            android:gravity="center_horizontal"
+		            android:text="."
+		            android:textAppearance="?android:attr/textAppearanceLarge"
+		            android:textSize="80dp"
+		            android:textColor="#000"
+		            android:typeface="monospace" />
+		
+		        <TextView
+		            android:id="@+id/dBFractionTextView"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="0"
+		            android:textAppearance="?android:attr/textAppearanceLarge"
+		            android:textSize="80dp"
+		            android:textColor="#000"
+		            android:typeface="monospace" />
+		
+		        <TextView
+		            android:id="@+id/textView4"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.25"
+		            android:text="dB"
+		            android:textAppearance="?android:attr/textAppearanceLarge"
+		            android:textSize="80dp"
+		            android:textColor="#000"
+		            android:typeface="monospace" />
+		
+		    </LinearLayout>
+		
+		    <TextView
+		        android:id="@+id/textView2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/adjust_sensitivity_instructions"
+		        android:layout_gravity="center_horizontal"
+		        android:textColor="#000"
+		        android:textSize="16dip"
+		        android:gravity="center_horizontal" />
+		    
+		    <LinearLayout
+		        android:id="@+id/linearLayout1"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="5dp" >
+		
+		        <Button
+		            android:id="@+id/minus_5_db_button"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.10"
+		            android:text="@string/minus_5_db" />
+		
+		        <Button
+		            android:id="@+id/minus_1_db_button"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.10"
+		            android:text="@string/minus_1_db" />
+		
+		        <Button
+		            android:id="@+id/plus_1_db_button"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.10"
+		            android:text="@string/plus_1_db" />
+		
+		        <Button
+		            android:id="@+id/plus_5_db_button"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.10"
+		            android:text="@string/plus_5_db" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/linearLayout3"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" >
+		
+		        <TextView
+		            android:id="@+id/gain_error_text"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="5dp"
+		            android:textColor="#000"
+		            android:textSize="16dip"
+		            android:text="@string/gain_error_text" />
+		
+		        <TextView
+		            android:id="@+id/gain"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="5dp"
+		            android:layout_weight="0.40"
+		            android:textColor="#000"
+		            android:textSize="16dip"
+		            android:text="@string/gain" />
+		    </LinearLayout>   
+		    
+		    <TextView 
+		        android:text="@string/instrument"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="20dip"
+		        android:background="#651"/>
+		    
+		    <Spinner 
+		        android:id="@+id/instrument_setting"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content" />
+            
+        </LinearLayout>
+    </ScrollView>
+    
+    
+    <Button
+        android:id="@+id/simpanButton"
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:textSize="20dip"
+        android:background="#651"
+        android:text="Simpan" />
+    
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bamboo" >
+    
+    <include layout="@layout/bar"/>
+    
+    <view class="com.masasdani.seruling.view.ButtonSeruling"
+        android:id="@+id/buttonSeruling"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+    </view>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:orientation="horizontal">
+        
+        <ToggleButton 
+            android:id="@+id/start_stop"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="0.3"
+	        android:textOff="Start"
+	        android:textOn="Stop"
+            android:textSize="20dip"
+	        android:background="#aa6f511e"/>
+        
+        <ToggleButton 
+            android:id="@+id/playButton"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="0.3"
+	        android:textOff="Putar"
+	        android:textOn="Selesai"
+            android:textSize="20dip"
+	        android:background="#aa6f511e"/>
+        
+        <Button 
+            android:id="@+id/menu"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
+            android:text="Setting"
+            android:textSize="20dip"
+            android:background="#aa6f511e"/>
+        
+    </LinearLayout>
+    
+</LinearLayout>
