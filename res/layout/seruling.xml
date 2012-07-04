@@ -29,13 +29,12 @@
             android:textSize="20dip"
 	        android:background="#aa6f511e"/>
         
-        <ToggleButton 
+        <Button 
             android:id="@+id/playButton"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="0.3"
-	        android:textOff="Putar"
-	        android:textOn="Selesai"
+	        android:text="Simpan"
             android:textSize="20dip"
 	        android:background="#aa6f511e"/>
         

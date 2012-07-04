@@ -27,28 +27,28 @@
 		    <LinearLayout
 		        android:id="@+id/linearLayout2"
 		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" >  
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal" >  
 		        
 		        <TextView
 		            android:id="@+id/dBTextView"
-		            android:layout_width="107dp"
+		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_weight="0.25"
 		            android:gravity="right"
 		            android:text="0"
 		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textSize="80dp"
+		            android:textSize="70dp"
 		            android:textColor="#000"
 		            android:typeface="monospace" />
 		
 		        <TextView
 		            android:id="@+id/textView1"
-		            android:layout_width="26dp"
+		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:gravity="center_horizontal"
 		            android:text="."
 		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textSize="80dp"
+		            android:textSize="70dp"
 		            android:textColor="#000"
 		            android:typeface="monospace" />
 		
@@ -58,7 +58,7 @@
 		            android:layout_height="wrap_content"
 		            android:text="0"
 		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textSize="80dp"
+		            android:textSize="70dp"
 		            android:textColor="#000"
 		            android:typeface="monospace" />
 		
@@ -66,10 +66,9 @@
 		            android:id="@+id/textView4"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_weight="0.25"
 		            android:text="dB"
 		            android:textAppearance="?android:attr/textAppearanceLarge"
-		            android:textSize="80dp"
+		            android:textSize="70dp"
 		            android:textColor="#000"
 		            android:typeface="monospace" />
 		

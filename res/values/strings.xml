@@ -4,7 +4,7 @@
     <string name="toast_message">On or Off</string>
     <string name="settings_ok">ok</string>
     <string name="adjust_sensitivity">Calibrate sensitivity</string>
-    <string name="adjust_sensitivity_instructions">Untuk mengatur sensifitas mic dan menghilangkan noise, silakan atur sensitifitas sehingga desibel menunjuk pada 2db.</string>
+    <string name="adjust_sensitivity_instructions">Untuk mengatur sensifitas mic dan menghilangkan noise, silakan atur sensitifitas sehingga desibel kurang dari 2db.</string>
     <string name="minus_5_db">-5\ndB</string>
     <string name="minus_1_db">-1\ndB</string>
     <string name="plus_1_db">+1\ndB</string>

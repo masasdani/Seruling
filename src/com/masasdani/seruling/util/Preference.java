@@ -19,7 +19,7 @@ public class Preference {
 	
 	public static Integer getCorrection(Context context){
 		SharedPreferences sharedPreferences = context.getSharedPreferences(SETTING, 0);
-		return sharedPreferences.getInt(CORRECTION, 30);
+		return sharedPreferences.getInt(CORRECTION, 40);
 	}
 	
 	public static String getInstrument(Context context){

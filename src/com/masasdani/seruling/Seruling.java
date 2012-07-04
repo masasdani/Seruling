@@ -9,6 +9,7 @@ import com.masasdani.seruling.engine.Clarinet;
 import com.masasdani.seruling.engine.Flute;
 import com.masasdani.seruling.engine.MicrophoneInput;
 import com.masasdani.seruling.engine.MicrophoneInputListener;
+import com.masasdani.seruling.engine.Pianica;
 import com.masasdani.seruling.util.FileWriter;
 import com.masasdani.seruling.util.Frequency;
 import com.masasdani.seruling.util.Preference;
@@ -45,7 +46,7 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 	private ButtonSeruling buttonSeruling;
 	private BarLevelDrawable barLevelDrawable;
 	private ToggleButton buttonStartStop;
-	private ToggleButton buttonPutar;
+	private Button buttonSimpan;
 	private Button button;
 	
 	private AudioTrack audioTrack;
@@ -57,6 +58,7 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 	private short[] buffer;
 	private Flute flute;
 	private Clarinet clarinet;
+	private Pianica pianica;
 	private float averagePower  = 1.0f;
 	private float frequency = 440.0f;
 
@@ -105,7 +107,7 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 		buffer = new short[minSize];
 		flute = new Flute(minSize);
 		clarinet = new Clarinet(minSize);
-		
+		pianica = new Pianica();
 	}
 	
 	private void getPreferenceData() {
@@ -128,8 +130,8 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 		buttonStartStop = (ToggleButton) findViewById(R.id.start_stop);
 		buttonStartStop.setOnClickListener(this);
 		
-		buttonPutar = (ToggleButton) findViewById(R.id.playButton);
-		buttonPutar.setOnClickListener(this);
+		buttonSimpan = (Button) findViewById(R.id.playButton);
+		buttonSimpan.setOnClickListener(this);
 		
 		button = (Button) findViewById(R.id.menu);
 		button.setOnClickListener(this);
@@ -143,7 +145,6 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 	
 	private void stopMic() {
 		micInput.stop();
-		FileWriter.copyWaveFile(tempFilename, filename, minSize);
 	}
 	
 	private void startMediaPlayer(){
@@ -155,9 +156,7 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 				mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 					
 					public void onCompletion(MediaPlayer mp) {
-						mediaPlayer.stop();
-						mediaPlayer = null;
-						buttonPutar.setChecked(false);
+						stopMediaPlayer();
 					}
 				});
 				mediaPlayer.start();
@@ -174,7 +173,10 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 	private void stopMediaPlayer(){
 		mediaPlayer.stop();
 		mediaPlayer = null;
-		buttonPutar.setChecked(false);
+	}
+	
+	private void simpan(){
+		FileWriter.copyWaveFile(tempFilename, filename, minSize);
 	}
 
 	@Override
@@ -261,14 +263,10 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 		}
 		frequency = soundMap.get(text);
 		if(event.getAction()==MotionEvent.ACTION_DOWN){
-			if(started){
-				play = new Play();
-				play.start();
-			}
+			touch = true;
 		}
 		if(event.getAction() == MotionEvent.ACTION_UP){
 			touch = false;
-			play = null;
 		}
 		return true;
 	}
@@ -281,18 +279,17 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 			audioTrack.play();
 			try {
 				os = new FileOutputStream(tempFilename);
-				while (touch) {
-					if(instrument.equalsIgnoreCase("clarinet")){
-						clarinet.clarinet(buffer, minSize, averagePower, frequency, SAMPLE_RATE);
-					}else if(instrument.equalsIgnoreCase("pianika")){
-						float angular_frequency = (float) (2*Math.PI) * frequency / SAMPLE_RATE;
-						float angle = 0;
-						for (int i = 0; i < buffer.length; i++){
-							buffer[i] = (short)(Short.MAX_VALUE * ((float) Math.sin(angle)));
-							angle += angular_frequency;
+				while (started) {
+					if(touch){
+						if(instrument.equalsIgnoreCase("clarinet")){
+							clarinet.clarinet(buffer, minSize, averagePower, frequency, SAMPLE_RATE);
+						}else if(instrument.equalsIgnoreCase("pianika")){
+							pianica.pianica(buffer, frequency, SAMPLE_RATE);
+						}else{
+							flute.flute(buffer, minSize, averagePower, frequency, SAMPLE_RATE);
 						}
 					}else{
-						flute.flute(buffer, minSize, averagePower, frequency, SAMPLE_RATE);
+						buffer = new short[minSize];
 					}
 					
 					byte[] fileBuffer = new byte[minSize*2];
@@ -301,20 +298,21 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 				    	fileBuffer[i*2] = (byte)(buffer[i]);
 			            fileBuffer[i*2 + 1] = (byte)(buffer[i] >> 8);
 			        }
-				    try {
+				    
+					try {
 						os.write(fileBuffer);
 					}catch (IOException e){
 						e.printStackTrace();
 					}
-				    
+				
+					
 					audioTrack.setStereoVolume(averagePower, averagePower);
 					audioTrack.write(buffer, 0, minSize);
-					
+				    
 				}
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
-			}
-			
+			}	
 		}
 	}
 
@@ -348,20 +346,20 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.playButton:
-			if(buttonPutar.isChecked()){
-				startMediaPlayer();
-			}else{
-				stopMediaPlayer();
-			}
+			simpan();
+			startMediaPlayer();
 			break;
 
 		case R.id.start_stop:
 			if(buttonStartStop.isChecked()){
 				startMic();
 				started = true;
+				play = new Play();
+				play.start();
 			}else{
 				stopMic();
 				started = false;
+				play = null;
 			}
 			break;
 
@@ -373,4 +371,5 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 			break;
 		}
 	}
+	
 }
