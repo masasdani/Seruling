@@ -127,13 +127,4 @@ public class MicrophoneInput implements Runnable{
    * @param audioFormat the format in which the audio data is represented. 
    * @return buffSize the size of the audio record input buffer.
    */
-//  private int bufferSize(int sampleRateInHz, int channelConfig,
-//      int audioFormat) {
-//    int buffSize = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig,
-//        audioFormat);
-//    if (buffSize < sampleRateInHz) {
-//      buffSize = sampleRateInHz;
-//    }
-//    return buffSize;
-//  }
 }

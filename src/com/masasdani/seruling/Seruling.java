@@ -262,6 +262,7 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 			text = "B3";
 		}
 		frequency = soundMap.get(text);
+		Log.d("frequency", text+" : "+frequency);
 		if(event.getAction()==MotionEvent.ACTION_DOWN){
 			touch = true;
 		}
