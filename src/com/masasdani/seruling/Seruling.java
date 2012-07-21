@@ -235,40 +235,46 @@ public class Seruling extends Activity implements OnTouchListener, MicrophoneInp
 			text = "G#4";
 		}else if(x > 0 && x < xc_5*2 && y < yc_5*6 && y > yc_5*4){
 			touch = true;
-			text = "G4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "G4";
 		}else if(x > xc_5*2 && x < xc_5*4 && y < yc_5*6 && y > yc_5*4){
 			touch = true;
-			text = "F#4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "F#4";
 		}else if(x > xc_5*4 && x < xc_5*6 && y < yc_5*6 && y > yc_5*4){
 			touch = true;
-			text = "F4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "F4";
 		}else if(x > 0 && x < xc_5*2 && y < yc_5*8 && y > yc_5*6){
 			touch = true;
-			text = "E4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "E4";
 		}else if(x > xc_5*2 && x < xc_5*4 && y < yc_5*8 && y > yc_5*6){
 			touch = true;
-			text = "D#4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "D#4";
 		}else if(x > xc_5*4 && x < xc_5*6 && y < yc_5*8 && y > yc_5*6){
 			touch = true;
-			text = "D4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "D4";
 		}else if(x > 0 && x < xc_5*2 && y < yc_5*10 && y > yc_5*8){
 			touch = true;
-			text = "C#4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "C#4";
 		}else if(x > xc_5*2 && x < xc_5*4 && y < yc_5*10 && y > yc_5*8){
 			touch = true;
-			text = "C4";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "C4";
 		}else if(x > xc_5*4 && x < xc_5*6 && y < yc_5*10 && y > yc_5*8){
 			touch = true;
-			text = "B3";
+			if(!instrument.equalsIgnoreCase("clarinet")) text = "B3";
 		}
-		frequency = soundMap.get(text);
-		Log.d("frequency", text+" : "+frequency);
+		
 		if(event.getAction()==MotionEvent.ACTION_DOWN){
 			touch = true;
 		}
 		if(event.getAction() == MotionEvent.ACTION_UP){
 			touch = false;
 		}
+		if(text==null){
+			text="A4";
+			touch=false;
+		}
+		frequency = soundMap.get(text);
+		Log.d("frequency", text+" : "+frequency);
+		
 		return true;
 	}
 	
